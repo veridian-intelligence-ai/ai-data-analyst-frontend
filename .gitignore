@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Environment — never commit real URLs or credentials (the template is the
+# exception). In the production system this starter derives from, the
+# frontend's .gitignore missed these rules and real credentials were
+# committed — see Mission M01's planted-secret gate.
+.env
+.env.*
+!.env.example
+
+# Test / tooling output
+coverage/
+
+# Editor & OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/

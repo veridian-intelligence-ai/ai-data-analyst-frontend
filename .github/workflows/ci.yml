@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc -b --noEmit
+      # The mission gates ARE tests — CI runs them, unlike the system this
+      # starter was derived from (its CI ran lint+build only; gates unproven).
+      - run: npm test
+      - run: npm run build
+        env:
+          VITE_API_BASE_URL: http://localhost:8000
